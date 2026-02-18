@@ -61,10 +61,9 @@ max_symbols = st.sidebar.slider(
 
 @st.cache_data
 def get_sp500():
-    table = pd.read_html(
-        "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    )
-    return table[0]["Symbol"].tolist()
+    df = pd.read_csv("sp500.csv")
+    return df["Symbol"].tolist()
+
 
 UNIVERSE = get_sp500()[:max_symbols]
 TODAY = datetime.today().date()
